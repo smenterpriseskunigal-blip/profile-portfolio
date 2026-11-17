@@ -1,0 +1,107 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --bp-bg-start: #f4f8ff;
+  --bp-bg-end: #e9f2ff;
+  --bp-surface: rgba(255, 255, 255, 0.86);
+  --bp-surface-solid: #ffffff;
+  --bp-ink: #0b2249;
+  --bp-ink-muted: #3b5888;
+  --bp-line: rgba(14, 58, 125, 0.22);
+  --bp-line-strong: rgba(14, 58, 125, 0.55);
+  --bp-grid-minor: rgba(14, 58, 125, 0.045);
+  --bp-grid-major: rgba(14, 58, 125, 0.11);
+  --bp-accent: #c86a00;
+  --bp-accent-fg: #ffffff;
+  --bp-cyan: #0e4da4;
+}
+
+.dark {
+  --bp-bg-start: #0a2a5e;
+  --bp-bg-end: #0e3a7d;
+  --bp-surface: rgba(8, 33, 75, 0.78);
+  --bp-surface-solid: #0a2b61;
+  --bp-ink: #e8f1ff;
+  --bp-ink-muted: #9bc3f7;
+  --bp-line: rgba(111, 211, 255, 0.24);
+  --bp-line-strong: rgba(111, 211, 255, 0.65);
+  --bp-grid-minor: rgba(111, 211, 255, 0.055);
+  --bp-grid-major: rgba(111, 211, 255, 0.13);
+  --bp-accent: #ffb84d;
+  --bp-accent-fg: #071b3e;
+  --bp-cyan: #6fd3ff;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+    background-color: var(--bp-bg-start);
+    color: var(--bp-ink);
+  }
+
+  h1, h2, h3, h4, .font-display {
+    font-family: 'Outfit', system-ui, sans-serif;
+  }
+
+  code, pre, .font-mono {
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+    font-variant-numeric: tabular-nums;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100dvh;
+    background:
+      radial-gradient(ellipse at 50% 0%, transparent 45%, rgba(4, 15, 38, 0.22) 100%),
+      linear-gradient(155deg, var(--bp-bg-start) 0%, var(--bp-bg-end) 100%);
+    background-attachment: fixed;
+    color: var(--bp-ink);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+}
+
+.blueprint-grid-canvas {
+  background-image:
+    linear-gradient(to right, var(--bp-grid-major) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--bp-grid-major) 1px, transparent 1px),
+    linear-gradient(to right, var(--bp-grid-minor) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--bp-grid-minor) 1px, transparent 1px);
+  background-size: 64px 64px, 64px 64px, 8px 8px, 8px 8px;
+}
+
+.blueprint-paper-grain {
+  background-image: radial-gradient(rgba(232, 241, 255, 0.04) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Blueprint perspective card tilt */
+.bp-tilt-card {
+  transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1), border-color 180ms ease;
+  transform-style: preserve-3d;
+}
+
+.bp-tilt-card:hover {
+  transform: perspective(900px) rotateX(1.5deg) rotateY(-1.5deg) translateY(-2px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .bp-tilt-card,
+  .bp-tilt-card:hover {
+    transform: none;
+    transition: none;
+  }
+}

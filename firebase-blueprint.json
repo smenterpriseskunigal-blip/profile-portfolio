@@ -1,0 +1,279 @@
+{
+  "entities": {
+    "Profile": {
+      "title": "Profile",
+      "description": "Portfolio owner profile, headline, bio, contact details, key stats, social URLs, and resume configuration.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "minLength": 2, "maxLength": 120 },
+        "role": { "type": "string", "minLength": 2, "maxLength": 160 },
+        "headline": { "type": "string", "minLength": 2, "maxLength": 240 },
+        "typedTaglines": { "type": "array", "maxLength": 10 },
+        "summary": { "type": "string", "minLength": 10, "maxLength": 2500 },
+        "location": { "type": "string", "maxLength": 160 },
+        "availability": { "type": "string", "maxLength": 160 },
+        "email": { "type": "string", "maxLength": 180 },
+        "phone": { "type": "string", "maxLength": 60 },
+        "linkedinUrl": { "type": "string", "maxLength": 300 },
+        "githubUrl": { "type": "string", "maxLength": 300 },
+        "websiteUrl": { "type": "string", "maxLength": 300 },
+        "avatarUrl": { "type": "string", "maxLength": 500 },
+        "stats": { "type": "array", "maxLength": 8 },
+        "resumeConfig": { "type": "object" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["name", "role", "headline", "summary", "email", "location"]
+    },
+    "Experience": {
+      "title": "Experience",
+      "description": "Work experience entry with company, role, dates, bullets, and tech stack.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-zA-Z0-9_\\-]+$", "maxLength": 128 },
+        "company": { "type": "string", "maxLength": 160 },
+        "role": { "type": "string", "maxLength": 160 },
+        "location": { "type": "string", "maxLength": 160 },
+        "startDate": { "type": "string", "maxLength": 40 },
+        "endDate": { "type": "string", "maxLength": 40 },
+        "bullets": { "type": "array", "maxLength": 15 },
+        "techStack": { "type": "array", "maxLength": 20 },
+        "order": { "type": "number" },
+        "visible": { "type": "boolean" },
+        "featured": { "type": "boolean" },
+        "deletedAt": { "type": ["string", "null"] },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "company", "role", "startDate", "endDate", "order", "visible"]
+    },
+    "Skill": {
+      "title": "Skill",
+      "description": "Technical skill categorized by DevOps domain with proficiency and years.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-zA-Z0-9_\\-]+$", "maxLength": 128 },
+        "category": { "type": "string", "maxLength": 80 },
+        "name": { "type": "string", "maxLength": 120 },
+        "level": { "type": "number" },
+        "years": { "type": "number" },
+        "order": { "type": "number" },
+        "visible": { "type": "boolean" },
+        "deletedAt": { "type": ["string", "null"] },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "category", "name", "level", "years", "order", "visible"]
+    },
+    "Project": {
+      "title": "Project",
+      "description": "Engineering project case study with tech tags, outcomes, links, and media.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-zA-Z0-9_\\-]+$", "maxLength": 128 },
+        "title": { "type": "string", "maxLength": 180 },
+        "summary": { "type": "string", "maxLength": 2000 },
+        "role": { "type": "string", "maxLength": 160 },
+        "outcomes": { "type": "array", "maxLength": 10 },
+        "techTags": { "type": "array", "maxLength": 20 },
+        "githubUrl": { "type": "string", "maxLength": 400 },
+        "liveUrl": { "type": "string", "maxLength": 400 },
+        "imageUrl": { "type": "string", "maxLength": 500 },
+        "videoUrl": { "type": "string", "maxLength": 500 },
+        "featured": { "type": "boolean" },
+        "order": { "type": "number" },
+        "visible": { "type": "boolean" },
+        "deletedAt": { "type": ["string", "null"] },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "title", "summary", "role", "order", "visible"]
+    },
+    "Education": {
+      "title": "Education",
+      "description": "Academic degree entry.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-zA-Z0-9_\\-]+$", "maxLength": 128 },
+        "degree": { "type": "string", "maxLength": 200 },
+        "institution": { "type": "string", "maxLength": 200 },
+        "years": { "type": "string", "maxLength": 60 },
+        "score": { "type": "string", "maxLength": 60 },
+        "order": { "type": "number" },
+        "visible": { "type": "boolean" },
+        "deletedAt": { "type": ["string", "null"] },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "degree", "institution", "years", "order", "visible"]
+    },
+    "Certification": {
+      "title": "Certification",
+      "description": "Cloud or Kubernetes certification with issuer and verification URL.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-zA-Z0-9_\\-]+$", "maxLength": 128 },
+        "name": { "type": "string", "maxLength": 200 },
+        "issuer": { "type": "string", "maxLength": 160 },
+        "date": { "type": "string", "maxLength": 40 },
+        "credentialId": { "type": "string", "maxLength": 120 },
+        "credentialUrl": { "type": "string", "maxLength": 400 },
+        "badgeUrl": { "type": "string", "maxLength": 500 },
+        "order": { "type": "number" },
+        "visible": { "type": "boolean" },
+        "deletedAt": { "type": ["string", "null"] },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "name", "issuer", "date", "order", "visible"]
+    },
+    "Achievement": {
+      "title": "Achievement",
+      "description": "Engineering award or recognition.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-zA-Z0-9_\\-]+$", "maxLength": 128 },
+        "title": { "type": "string", "maxLength": 200 },
+        "issuer": { "type": "string", "maxLength": 160 },
+        "date": { "type": "string", "maxLength": 40 },
+        "metric": { "type": "string", "maxLength": 120 },
+        "description": { "type": "string", "maxLength": 1000 },
+        "order": { "type": "number" },
+        "visible": { "type": "boolean" },
+        "deletedAt": { "type": ["string", "null"] },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "title", "date", "order", "visible"]
+    },
+    "Volunteering": {
+      "title": "Volunteering",
+      "description": "Community or open-source volunteering activity.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-zA-Z0-9_\\-]+$", "maxLength": 128 },
+        "organisation": { "type": "string", "maxLength": 180 },
+        "role": { "type": "string", "maxLength": 160 },
+        "dates": { "type": "string", "maxLength": 80 },
+        "impact": { "type": "string", "maxLength": 1000 },
+        "order": { "type": "number" },
+        "visible": { "type": "boolean" },
+        "deletedAt": { "type": ["string", "null"] },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "organisation", "role", "dates", "order", "visible"]
+    },
+    "Message": {
+      "title": "Message",
+      "description": "Contact form submission stored securely for admin review.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-zA-Z0-9_\\-]+$", "maxLength": 128 },
+        "name": { "type": "string", "minLength": 1, "maxLength": 120 },
+        "email": { "type": "string", "minLength": 3, "maxLength": 180 },
+        "subject": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "message": { "type": "string", "minLength": 5, "maxLength": 4000 },
+        "read": { "type": "boolean" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "name", "email", "subject", "message", "read", "createdAt"]
+    },
+    "MediaAsset": {
+      "title": "MediaAsset",
+      "description": "AI-generated image or video asset metadata for project showcases.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-zA-Z0-9_\\-]+$", "maxLength": 128 },
+        "kind": { "type": "string", "enum": ["image", "video"] },
+        "prompt": { "type": "string", "maxLength": 1200 },
+        "model": { "type": "string", "maxLength": 80 },
+        "aspectRatio": { "type": "string", "maxLength": 20 },
+        "resolution": { "type": "string", "maxLength": 20 },
+        "mediaUrl": { "type": "string", "maxLength": 900000 },
+        "visible": { "type": "boolean" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "kind", "prompt", "model", "aspectRatio", "visible", "createdAt"]
+    },
+    "AuditLog": {
+      "title": "AuditLog",
+      "description": "Admin audit trail recording actor, action, target, and timestamp.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-zA-Z0-9_\\-]+$", "maxLength": 128 },
+        "actorEmail": { "type": "string", "maxLength": 180 },
+        "action": { "type": "string", "maxLength": 80 },
+        "entity": { "type": "string", "maxLength": 80 },
+        "entityId": { "type": "string", "maxLength": 128 },
+        "summary": { "type": "string", "maxLength": 500 },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "actorEmail", "action", "entity", "createdAt"]
+    },
+    "SiteSettings": {
+      "title": "SiteSettings",
+      "description": "Global site settings including sheet revision number, theme defaults, and last resume build metadata.",
+      "type": "object",
+      "properties": {
+        "siteTitle": { "type": "string", "maxLength": 160 },
+        "sheetRevision": { "type": "string", "maxLength": 30 },
+        "defaultTheme": { "type": "string", "enum": ["dark", "light"] },
+        "lastResumeBuildAt": { "type": "string" },
+        "lastAtsScore": { "type": "number" },
+        "resumePublished": { "type": "boolean" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["siteTitle", "sheetRevision", "defaultTheme"]
+    }
+  },
+  "firestore": {
+    "/siteContent/{docId}": {
+      "schema": { "$ref": "#/entities/Profile" },
+      "description": "Singleton documents for profile and siteSettings."
+    },
+    "/experiences/{expId}": {
+      "schema": { "$ref": "#/entities/Experience" },
+      "description": "Work experience entries."
+    },
+    "/skills/{skillId}": {
+      "schema": { "$ref": "#/entities/Skill" },
+      "description": "Technical skills."
+    },
+    "/projects/{projectId}": {
+      "schema": { "$ref": "#/entities/Project" },
+      "description": "Portfolio projects."
+    },
+    "/education/{eduId}": {
+      "schema": { "$ref": "#/entities/Education" },
+      "description": "Education credentials."
+    },
+    "/certifications/{certId}": {
+      "schema": { "$ref": "#/entities/Certification" },
+      "description": "Certifications."
+    },
+    "/achievements/{achId}": {
+      "schema": { "$ref": "#/entities/Achievement" },
+      "description": "Achievements and recognitions."
+    },
+    "/volunteering/{volId}": {
+      "schema": { "$ref": "#/entities/Volunteering" },
+      "description": "Volunteering records."
+    },
+    "/messages/{msgId}": {
+      "schema": { "$ref": "#/entities/Message" },
+      "description": "Contact form messages (write-only for public, admin-only read)."
+    },
+    "/mediaAssets/{assetId}": {
+      "schema": { "$ref": "#/entities/MediaAsset" },
+      "description": "AI Media Studio generated images and video references."
+    },
+    "/auditLogs/{logId}": {
+      "schema": { "$ref": "#/entities/AuditLog" },
+      "description": "Admin CMS audit log entries."
+    },
+    "/admins/{uid}": {
+      "schema": { "type": "object" },
+      "description": "Admin UID allowlist records."
+    }
+  }
+}

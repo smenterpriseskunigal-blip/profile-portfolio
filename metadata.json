@@ -1,0 +1,6 @@
+{
+  "name": "Yashwanth Gowda M — 3D Blueprint Portfolio",
+  "description": "Interactive 3D AWS EKS blueprint portfolio, Firestore-backed Admin CMS, AI Media Studio, and auto-generated ATS-optimised resume platform for Yashwanth Gowda M.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
